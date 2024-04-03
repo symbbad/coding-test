@@ -1,9 +1,11 @@
+from collections import deque
+
 N = int(input())
-_list = list(range(1,N+1))
+deque = deque([i for i in range(1, N+1)])
 
-while (len(_list)>1):
-    _list.pop(0)
-    temp = _list.pop(0)
-    _list.append(temp)
-
-print(_list.pop(0))
+while(len(deque) >1):
+    deque.popleft()
+    move_num = deque.popleft()
+    deque.append(move_num)
+    
+print(deque[0])

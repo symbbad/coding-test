@@ -1,27 +1,28 @@
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10000) 
 input = sys.stdin.readline
 
-n, m = map(int,input().split())
-graph = [[] for _ in range(n+1)]
-vistied = [False] * (n+1)
+N, M = map(int, input().split())
 
-def DFS(v):
-    vistied[v] = True
-    for i in graph[v]:
-        if not vistied[i]:
-            DFS(i)
-
-for _ in range(m):
-    node, edge = map(int, input().split())
-    graph[node].append(edge)
-    graph[edge].append(node)
-
+graph = [[] for _ in range(N+1)]
+visited = [0]*(N+1)
 count = 0
 
-for i in range(1, n+1):
-    if not vistied[i]:
+for _ in range(M):
+    node_1, node_2 = map(int, input().split())
+    graph[node_1].append(node_2)
+    graph[node_2].append(node_1)
+
+
+def dfs(graph, visited, node):
+    visited[node] = 1
+    for next_node in graph[node]:
+        if not visited[next_node]:
+            dfs(graph, visited, next_node)
+
+for i in range(1, len(graph)):
+    if not visited[i]:
+        dfs(graph, visited, i)
         count += 1
-        DFS(i)
 
 print(count)

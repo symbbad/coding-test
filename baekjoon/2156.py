@@ -3,7 +3,7 @@ input = sys.stdin.readline
 
 n = int(input())
 
-dp = [0] * n
+dp = [0] * 10000
 wines = [int(input()) for _ in range(n)]
 
 dp[0] = wines[0]
